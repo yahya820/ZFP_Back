@@ -47,15 +47,16 @@ public class UserServices {
     }
 
     //Delete by Id
- public void deleteById( long id){
-        Optional<User> delete = userRepository.findById(id);
-        return userRepository.deleteById(delete);
- }
+     public void deleteById(long id){
+         userRepository.deleteById(id);
+     }
   //Update By id
     public User editById(long id, UserDTO userDTO){
       User user = modelMapper.map(userDTO, User.class);
       user.setUserId(id);
       return userRepository.save(user);
     }
+
+
 
 }

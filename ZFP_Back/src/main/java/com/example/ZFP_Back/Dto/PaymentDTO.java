@@ -10,5 +10,5 @@ public class PaymentDTO {
     private int acc_no;
     private int receipt_no;
     private String receipt_image;
-    private Fisherman fisherman;
+    private Long fishernmanId;
 }

@@ -35,6 +35,7 @@ public class User {
     @Column  ( name = "pass")
     private String pass;
     private String email;
+    private int leader;
 //
 ////    @OneToOne(mappedBy = "user")
 ////    private PersonalInfo personalInfo;
