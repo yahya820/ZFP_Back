@@ -35,21 +35,12 @@ public class User {
     @Column  ( name = "pass")
     private String pass;
     private String email;
+
     private int leader;
-//
-////    @OneToOne(mappedBy = "user")
-////    private PersonalInfo personalInfo;
-//
-////    @OneToOne(cascade =  CascadeType.ALL)
-////    @JoinColumn ( name = "personalID", referencedColumnName = "personalId")
-////    private PersonalInfo personalInfo;
-//
-//    @OneToMany (mappedBy = "user")
-//    private List <Fisherman> fishermanList = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name="id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    List<Roles> roles;
+     List<Roles> roles;
 }

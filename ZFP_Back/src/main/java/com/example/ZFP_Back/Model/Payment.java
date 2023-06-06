@@ -21,7 +21,7 @@ public class Payment {
     private byte [] receipt_image;
 
     @ManyToOne
-    @JoinColumn( name = "FishermanID", referencedColumnName = "fishernmanId")
+    @JoinColumn( name = "FishermanID", referencedColumnName = "fishermanId")
     private Fisherman fisherman;
 
 }

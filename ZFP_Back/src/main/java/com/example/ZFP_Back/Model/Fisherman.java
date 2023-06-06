@@ -13,16 +13,11 @@ import java.util.List;
 public class Fisherman {
     @Id
     @GeneratedValue ( strategy = GenerationType.AUTO)
-    private Long fishernmanId;
+    private Long fishermanId;
     private String ways;
     private LocalDate start_date;
     private LocalDate finish_date;
     private String diko_usage;
-
-//    @ManyToOne
-//    @JoinColumn( name = "userID", referencedColumnName = "user_id")
-//    private User user;
-
     @OneToMany (mappedBy = "fisherman")
     private List<Payment> paymentList = new ArrayList<>();
 }
