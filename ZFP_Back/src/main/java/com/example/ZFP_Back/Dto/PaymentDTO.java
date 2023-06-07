@@ -1,9 +1,5 @@
 package com.example.ZFP_Back.Dto;
-
-import com.example.ZFP_Back.Model.Fisherman;
-import jakarta.persistence.*;
 import lombok.Data;
-
 @Data
 public class PaymentDTO {
     private Long payment_id;
@@ -12,4 +8,5 @@ public class PaymentDTO {
     private int receipt_no;
     private byte [] receipt_image;
     private Long fishernmanId;
+    
 }

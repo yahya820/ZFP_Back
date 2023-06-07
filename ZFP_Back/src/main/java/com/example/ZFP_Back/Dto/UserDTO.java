@@ -17,12 +17,7 @@ public class UserDTO {
     private String username;
     private String pass;
     private String email;
-   private Long roleId;
-   private int leader;
-//    private long personalId;
-
-
-//private PersonalInfo personalInfo;
-//private List<Roles> rolesList;
+    private int leader;
+    private String roles;
 
 }

@@ -3,14 +3,13 @@ package com.example.ZFP_Back.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
 
 @Data
 @Entity
 @Table( name = "User")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long userId;
     @Column ( name ="name")
     private String name;
@@ -35,12 +34,6 @@ public class User {
     @Column  ( name = "pass")
     private String pass;
     private String email;
-
     private int leader;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name="id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-     List<Roles> roles;
+    private String roles;
 }

@@ -4,13 +4,20 @@ import com.example.ZFP_Back.Dto.UserDTO;
 import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Repository.RoleRepository;
 import com.example.ZFP_Back.Repository.UserRepository;
+// import com.example.ZFP_Back.sha3.Sha3Util;
+
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Optional;
+
+// import javax.crypto.EncryptedPrivateKeyInfo;
 
 @Data
 @Service
@@ -26,9 +33,27 @@ public class UserServices {
     //create a User and thier Role
     public User addUSer(UserDTO userDTO){
         User user = modelMapper.map(userDTO, User.class);
+        String name  = user.getName();
+        String pass = user.getPass();
+        int nameLength = name.length();
+        String encryptedPassword = encryptPassword(pass,nameLength);
+        user.setPass(encryptedPassword);
         return userRepository.save(user);
     }
+         //Register
+    //    public User regiUser(User user){
 
+    //     String name  = user.getName();
+    //     String pass = user.getPass();
+    //     String    
+
+    //     int nameLength = name.length();
+    //     String encryptedPassword = encryptPassword(pass,nameLength);
+    //     user.setPass(encryptedPassword);
+    //     return userRepository.save(user);
+    // } 
+
+  
     //method for get User
     public List<User> ListAllUser() {
         List<User> userList = userRepository.findAll();
@@ -46,6 +71,11 @@ public class UserServices {
         return userRepository.findById(id);
     }
 
+    // get User by Username
+    public Optional<User> getByUsername(String name) {
+        return userRepository.getByUsername(name);
+    }
+
     //Delete by Id
      public void deleteById(long id){
          userRepository.deleteById(id);
@@ -56,6 +86,46 @@ public class UserServices {
       user.setUserId(id);
       return userRepository.save(user);
     }
+
+    
+  
+
+   
+    //Login
+    public boolean authenticate(String name, String pass) {
+        Optional<User> optionalLogin = userRepository.getByUsername(name);
+        if (optionalLogin.isPresent()) {
+            User user = optionalLogin.get();
+            String encryptedPassword = encryptPassword(pass, name.length());
+            if (encryptedPassword.equals(user.getPass())) {
+                return true; // Authentication successful
+            }
+        }
+        return false; // Authentication failed
+    }
+
+    public String encryptPassword(String pass, int nameLength){
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            String data = pass + nameLength;
+            byte[] hash = digest.digest(data.getBytes(StandardCharsets.UTF_8));
+
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : hash) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception appropriately
+            e.printStackTrace();
+            return null;
+        }
+    }
+     
 
 
 

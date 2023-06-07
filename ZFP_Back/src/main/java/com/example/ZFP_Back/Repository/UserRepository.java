@@ -1,19 +1,23 @@
 package com.example.ZFP_Back.Repository;
 
 import com.example.ZFP_Back.Model.User;
+
+import java.util.Optional;
+
+// import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    // @Query ( value = "select * from user where email = ?1", nativeQuery = "" )
+    // User getByEmail(String email);
 
-//    Optional<User> findByUsername(String username);
+    boolean findByUsername(String name);
 
-//    List<User> findByID(Long UserId);
-
-//    List<User> findByFishermen_Diko(String diko);
-
-//    List<User> findByPayments_AccountNo(String accountNo);
+    @Query ( value = "select * from user where name = ?1", nativeQuery = true)
+    Optional<User> getByUsername(String name);
 }
 
