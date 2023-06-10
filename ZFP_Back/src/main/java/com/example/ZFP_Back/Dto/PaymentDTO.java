@@ -1,4 +1,6 @@
 package com.example.ZFP_Back.Dto;
+import java.time.LocalDate;
+
 import lombok.Data;
 @Data
 public class PaymentDTO {
@@ -7,6 +9,7 @@ public class PaymentDTO {
     private int acc_no;
     private int receipt_no;
     private byte [] receipt_image;
+    private LocalDate date;
     // private Long fishernmanId;
     
 }

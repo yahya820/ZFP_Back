@@ -1,5 +1,8 @@
 package com.example.ZFP_Back.Model;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,6 +22,7 @@ public class Payment {
     @Column ( name = "receipt_image")
     @Lob
     private byte [] receipt_image;
+    private LocalDate date;
 
     // @ManyToOne
     // @JoinColumn( name = "FishermanID", referencedColumnName = "fishermanId")
