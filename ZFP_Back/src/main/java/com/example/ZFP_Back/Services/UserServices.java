@@ -1,11 +1,10 @@
 package com.example.ZFP_Back.Services;
 
 import com.example.ZFP_Back.Dto.UserDTO;
+import com.example.ZFP_Back.Exception.ResourceNotFoundException;
 import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Repository.RoleRepository;
 import com.example.ZFP_Back.Repository.UserRepository;
-// import com.example.ZFP_Back.sha3.Sha3Util;
-
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,15 +81,25 @@ public class UserServices {
      }
   //Update By id
     public User editById(long id, UserDTO userDTO){
-      User user = modelMapper.map(userDTO, User.class);
-      user.setUserId(id);
+        User user = userRepository.findById(id)
+        .orElseThrow(()-> new ResourceNotFoundException("User Not Found",id));
+        modelMapper.map(userDTO, User.class);
+        user.setSex(userDTO.getSex());
+        user.setWork(userDTO.getWork());
+        user.setEmail(userDTO.getEmail());
+        user.setAddress(userDTO.getAddress());
+        user.setAge(userDTO.getAge());
+        user.setIdentity(userDTO.getIdentity());
+        user.setLeader(userDTO.getLeader());
+        user.setName(userDTO.getName());
+        user.setNationality(userDTO.getNationality());
+        user.setPhone(userDTO.getPhone());
+        user.setUsername(userDTO.getUsername());
+        // user.setImage(userDTO.getImage());
       return userRepository.save(user);
     }
 
     
-  
-
-   
     //Login
     public boolean authenticate(String name, String pass) {
         Optional<User> optionalLogin = userRepository.getByUsername(name);

@@ -11,23 +11,27 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/fisherman")
+@RequestMapping("/api/vi")
 public class FishermanController {
     @Autowired
     private FishermanService fishermanService;
 
-    @PostMapping("/post")
+    @PostMapping("/fisherman")
     public ResponseEntity<Fisherman> add(@RequestBody FIshermanDTO fIshermanDTO){
        Fisherman fisherman = fishermanService.create(fIshermanDTO);
        return ResponseEntity.ok(fisherman);
     }
-    @GetMapping("/get")
+    @GetMapping("/fisherman")
     public List<Fisherman>getAll(){
         return fishermanService.getAll();
     }
-    @GetMapping("/get{id}")
+    @GetMapping("/fihserman/{id}")
     public ResponseEntity<?> getByID(@PathVariable Long id){
         return ResponseEntity.ok(fishermanService.getById(id));
+    }
+    @PutMapping("/fisherman/{id}")
+    public ResponseEntity <?> update(@PathVariable long id, @RequestBody FIshermanDTO fIshermanDTO){
+        return ResponseEntity.ok(fishermanService.update(id, fIshermanDTO));
     }
 
 }

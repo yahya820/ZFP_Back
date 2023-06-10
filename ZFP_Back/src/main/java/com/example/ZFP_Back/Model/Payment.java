@@ -20,8 +20,8 @@ public class Payment {
     @Lob
     private byte [] receipt_image;
 
-    @ManyToOne
-    @JoinColumn( name = "FishermanID", referencedColumnName = "fishermanId")
-    private Fisherman fisherman;
+    // @ManyToOne
+    // @JoinColumn( name = "FishermanID", referencedColumnName = "fishermanId")
+    // private Fisherman fisherman;
 
 }

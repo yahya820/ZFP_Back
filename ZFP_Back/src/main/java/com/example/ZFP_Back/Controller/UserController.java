@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable long id, UserDTO userDTO){
+    public ResponseEntity<?> updateUser(@PathVariable long id, @RequestBody UserDTO userDTO){
        return ResponseEntity.ok(userServices.editById(id,userDTO));
     }
    @DeleteMapping("/users/{id}")
@@ -54,7 +54,6 @@ public class UserController {
                return ResponseEntity.ok(userDTO);
            }
        }
-
        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
    }
 }
