@@ -3,6 +3,7 @@ package com.example.ZFP_Back.Controller;
 import com.example.ZFP_Back.Dto.UserDTO;
 import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Services.UserServices;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,16 +34,17 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable long id, @RequestBody UserDTO userDTO){
-       return ResponseEntity.ok(userServices.editById(id,userDTO));
-    }
+   public ResponseEntity<?> update (@PathVariable long id, @RequestBody UserDTO userDTO){
+    return ResponseEntity.ok(userServices.editById(id, userDTO));
+   }
+
    @DeleteMapping("/users/{id}")
    public void deleteById (@PathVariable long id){
      userServices.deleteById(id);
    }
    @PostMapping("users/login")
-   public ResponseEntity<Object> authenticate(@RequestParam("username") String name,
-                                              @RequestParam("password") String pass) {
+   public ResponseEntity<Object> authenticate(@RequestParam("name") String name,
+                                              @RequestParam("pass") String pass) {
        if (userServices.authenticate(name, pass)) {
            Optional<User> user = userServices.getByUsername(name);
         

@@ -3,9 +3,9 @@ package com.example.ZFP_Back.Services;
 import com.example.ZFP_Back.Dto.UserDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
 import com.example.ZFP_Back.Model.User;
-import com.example.ZFP_Back.Repository.RoleRepository;
+// import com.example.ZFP_Back.Repository.RoleRepository;
 import com.example.ZFP_Back.Repository.UserRepository;
-import lombok.Data;
+// import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,10 @@ import java.util.Optional;
 
 // import javax.crypto.EncryptedPrivateKeyInfo;
 
-@Data
 @Service
 public class UserServices {
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -39,20 +36,14 @@ public class UserServices {
         user.setPass(encryptedPassword);
         return userRepository.save(user);
     }
-         //Register
-    //    public User regiUser(User user){
 
-    //     String name  = user.getName();
-    //     String pass = user.getPass();
-    //     String    
-
-    //     int nameLength = name.length();
-    //     String encryptedPassword = encryptPassword(pass,nameLength);
-    //     user.setPass(encryptedPassword);
+    //update
+    // public User update(UserDTO userDTO){
+    //     User user = modelMapper.map(userDTO, User.class);
     //     return userRepository.save(user);
-    // } 
-
+    // }
   
+    
     //method for get User
     public List<User> ListAllUser() {
         List<User> userList = userRepository.findAll();
@@ -94,8 +85,8 @@ public class UserServices {
         user.setName(userDTO.getName());
         user.setNationality(userDTO.getNationality());
         user.setPhone(userDTO.getPhone());
-        user.setUsername(userDTO.getUsername());
-        // user.setImage(userDTO.getImage());
+        user.setUsername(userDTO.getUsername()); 
+        user.setImage(userDTO.getImage());
       return userRepository.save(user);
     }
 

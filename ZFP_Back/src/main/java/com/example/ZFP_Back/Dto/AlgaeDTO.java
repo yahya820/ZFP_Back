@@ -1,16 +1,12 @@
-package com.example.ZFP_Back.Model;
+package com.example.ZFP_Back.Dto;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
+
 @Data
-@Entity
-@Table (name = "Algae")
-public class Algae {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class AlgaeDTO {
     private Long algaeId;
     private int no_farm;
     private int no_men;
@@ -19,4 +15,5 @@ public class Algae {
     private int tones;
     private String type;
     private LocalDate date;
+    
 }

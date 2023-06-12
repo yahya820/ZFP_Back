@@ -17,7 +17,6 @@ public class UserDTO {
     private String username;
     private String pass;
     private String email;
-    private int leader;
+    private String leader;
     private String roles;
-
 }

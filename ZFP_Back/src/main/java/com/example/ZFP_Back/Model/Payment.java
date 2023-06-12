@@ -1,9 +1,12 @@
 package com.example.ZFP_Back.Model;
-
-import java.sql.Date;
 import java.time.LocalDate;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
@@ -13,13 +16,9 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long payment_id;
-    @Column ( name = "acc_name")
     private String acc_name;
-    @Column ( name = "acc_no")
     private int acc_no;
-    @Column ( name = "receipt_no")
     private int receipt_no;
-    @Column ( name = "receipt_image")
     @Lob
     private byte [] receipt_image;
     private LocalDate date;
