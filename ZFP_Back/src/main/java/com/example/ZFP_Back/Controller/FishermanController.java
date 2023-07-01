@@ -25,6 +25,12 @@ public class FishermanController {
     public List<Fisherman>getAll(){
         return fishermanService.getAll();
     }
+
+    @GetMapping("/fisherman/user/{id}")
+    public ResponseEntity<?> getByfishermanId(@PathVariable long id){
+        return ResponseEntity.ok(fishermanService.getByFishemanId(id));
+    }
+    
     @GetMapping("/fihserman/{id}")
     public ResponseEntity<?> getByID(@PathVariable Long id){
         return ResponseEntity.ok(fishermanService.getById(id));

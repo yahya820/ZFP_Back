@@ -18,7 +18,7 @@ public class User {
     private byte[] image;
     private String work;
     private String address;
-    private int phone;
+    private Long phone;
     private int identity;
     private String nationality;
     private String sex;

@@ -13,6 +13,9 @@ public class FIshermanDTO {
     private String diko_usage;
     private String type;
     private String meter;
+    private Long userId;
 
     // private List<Payment> paymentList = new ArrayList<>();
+
+    // private Long userId;
 }

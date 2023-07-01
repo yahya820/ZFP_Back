@@ -24,4 +24,8 @@ public class Fisherman {
 
     // @OneToMany (mappedBy = "fisherman")
     // private List<Payment> paymentList = new ArrayList<>();
+
+    @OneToOne
+    private User user;
+    // private Long userId;
 }

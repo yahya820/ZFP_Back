@@ -3,6 +3,8 @@ package com.example.ZFP_Back.Services;
 import com.example.ZFP_Back.Dto.FIshermanDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
 import com.example.ZFP_Back.Model.Fisherman;
+import com.example.ZFP_Back.Model.User;
+// import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Repository.FishermanRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,10 @@ public class FishermanService {
 //    }
     //Add fisherman
     public Fisherman create(FIshermanDTO fIshermanDTO){
+        User user = new User();
+       user.setUserId(fIshermanDTO.getUserId());
         Fisherman fisherman = modelMapper.map(fIshermanDTO, Fisherman.class);
+        fisherman.setUser(user);
         return fishermanRepository.save(fisherman);
     }
 
@@ -36,6 +41,12 @@ public class FishermanService {
         List<Fisherman> fishermanList = fishermanRepository.findAll();
         return fishermanList;
     }
+
+   public Optional <Fisherman> getByFishemanId(long id){
+    return fishermanRepository.findallByFishermanId(id);
+   }
+
+    
     //get By Id
     public Optional<Fisherman> getById(Long fishermanId){
         return fishermanRepository.findById(fishermanId);

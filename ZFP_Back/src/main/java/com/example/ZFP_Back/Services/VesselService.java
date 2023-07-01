@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.ZFP_Back.Dto.vesselDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
+import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Model.Vessel;
 import com.example.ZFP_Back.Repository.VesselRepository;
 
@@ -28,7 +29,10 @@ public class VesselService {
 
     // post vessel
    public Vessel post(vesselDTO vDto){
+    User user = new User();
+    user.setUserId(vDto.getUserId());
     Vessel vessel = modelMapper.map(vDto, Vessel.class);
+    vessel.setUser(user);
     return vesselRepository.save(vessel);
    }
    

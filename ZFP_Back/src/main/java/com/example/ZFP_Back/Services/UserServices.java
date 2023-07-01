@@ -66,6 +66,10 @@ public class UserServices {
         return userRepository.getByUsername(name);
     }
 
+    //get By UserId
+    public Optional<User> getByUserId(long userId){
+        return userRepository.getByUserId(userId);
+    }
     //Delete by Id
      public void deleteById(long id){
          userRepository.deleteById(id);
@@ -81,14 +85,22 @@ public class UserServices {
         user.setAddress(userDTO.getAddress());
         user.setAge(userDTO.getAge());
         user.setIdentity(userDTO.getIdentity());
-        user.setLeader(userDTO.getLeader());
+        // user.setLeader(userDTO.getLeader());
         user.setName(userDTO.getName());
         user.setNationality(userDTO.getNationality());
-        user.setPhone(userDTO.getPhone());
+        user.setPhone(userDTO.getUserId());
         user.setUsername(userDTO.getUsername()); 
         user.setImage(userDTO.getImage());
       return userRepository.save(user);
     }
+
+    //update Byid on leader
+    // public User updateById(long id, UserDTO userDTO){
+    //     User user = userRepository.findById(id)
+    //     .orElseThrow( ()-> new ResourceNotFoundException("User id leader not Found", id));
+    //     user.setLeader(userDTO.getLeader());
+    //     return userRepository.save(user);
+    // }
 
     
     //Login

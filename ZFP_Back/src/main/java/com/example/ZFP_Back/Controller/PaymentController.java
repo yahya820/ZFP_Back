@@ -29,7 +29,7 @@ public class PaymentController {
     }
     @GetMapping("/payment/{id}")
     public ResponseEntity<?> getById(@PathVariable long id){
-        return ResponseEntity.ok(paymentService.ByID(id));
+        return ResponseEntity.ok(paymentService.getByPaymentId(id));
     }
     @PutMapping("/payment/{id}")
     public ResponseEntity<?> update (@PathVariable long id, PaymentDTO paymentDTO){

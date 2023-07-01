@@ -2,7 +2,10 @@ package com.example.ZFP_Back.Services;
 
 import com.example.ZFP_Back.Dto.PaymentDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
+import com.example.ZFP_Back.Model.Fisherman;
 import com.example.ZFP_Back.Model.Payment;
+// import com.example.ZFP_Back.Model.Vessel;
+// import com.example.ZFP_Back.Model.Vessel;
 import com.example.ZFP_Back.Repository.PaymentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +28,18 @@ public class PaymentService {
 
    // Post Payment
     public Payment post(PaymentDTO paymentDTO){
+        // Vessel vessel = new Vessel();
+        Fisherman fisherman = new Fisherman();
+        fisherman.setFishermanId(paymentDTO.getFishermanId());
+        // vessel.setVessel_id(paymentDTO.getVessel_id());
         Payment payment = modelMapper.map(paymentDTO,  Payment.class);
+        // payment.setVessel(vessel);
+        payment.setFisherman(fisherman);
         return paymentRepository.save(payment);
     }
 
     // Get By id Payment
-    public Optional<Payment> ByID(long id){
+    public Optional<Payment> getByPaymentId(long id){
         return paymentRepository.findById(id);
     }
 
@@ -40,7 +49,7 @@ public class PaymentService {
         .orElseThrow(()-> new ResourceNotFoundException("Payment Id not Found", id));
         modelMapper.map(paymentDTO, Payment.class);
         payment.setAcc_name(paymentDTO.getAcc_name());
-        payment.setAcc_no(paymentDTO.getAcc_no());
+        // payment.setAcc_no(paymentDTO.getAcc_no());
         payment.setReceipt_no(paymentDTO.getReceipt_no());
         // payment.setReceipt_image(paymentDTO.getReceipt_image());
 

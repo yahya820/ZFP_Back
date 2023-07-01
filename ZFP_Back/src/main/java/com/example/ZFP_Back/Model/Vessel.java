@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Vessel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long vessel_id;
+    private Long vesselId;
     @Column ( name = "name_vessel")
     private String name_vessel;
     @Column ( name = "type_vessel")
@@ -24,6 +24,9 @@ public class Vessel {
     private LocalDate start_date;
     private LocalDate finish_date;
     private int meter;
+
+    @OneToOne
+    private User user;
 
 
 }
