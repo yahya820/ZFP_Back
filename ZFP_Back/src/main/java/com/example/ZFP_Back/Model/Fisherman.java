@@ -1,9 +1,13 @@
 package com.example.ZFP_Back.Model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
+
 // import java.util.ArrayList;
 // import java.util.Date;
 // import java.util.List;
@@ -21,11 +25,8 @@ public class Fisherman {
     private String diko_usage;
     private String type;
     private String meter;
-
-    // @OneToMany (mappedBy = "fisherman")
-    // private List<Payment> paymentList = new ArrayList<>();
-
+    
     @OneToOne
     private User user;
-    // private Long userId;
+
 }

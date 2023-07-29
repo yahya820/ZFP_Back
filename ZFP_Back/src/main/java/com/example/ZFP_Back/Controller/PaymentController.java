@@ -2,6 +2,9 @@ package com.example.ZFP_Back.Controller;
 
 import com.example.ZFP_Back.Dto.PaymentDTO;
 import com.example.ZFP_Back.Model.Payment;
+import com.example.ZFP_Back.Model.PaymentVessel;
+import com.example.ZFP_Back.Request.PaymentFishermanRequest;
+import com.example.ZFP_Back.Request.PaymentVesselRequest;
 import com.example.ZFP_Back.Services.PaymentService;
 
 import java.util.List;
@@ -18,21 +21,24 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @PostMapping("/payment")
-    public ResponseEntity<Payment> post (@RequestBody PaymentDTO paymentDTO){
-        Payment payment = paymentService.post(paymentDTO);
-        return ResponseEntity.ok(payment);
+    @PostMapping("/payment/vessel")
+    public ResponseEntity<?> post (@RequestBody PaymentVesselRequest paymentVesselRequest){
+        PaymentVessel paymentVessel = paymentService.postVessel(paymentVesselRequest);
+        return ResponseEntity.ok(paymentVessel);
     }
-    @GetMapping("/payment")
-    public List <Payment> getAll(){
-        return paymentService.getAll();
+    
+    @GetMapping("/payment/vessel")
+    public List <?> getPaymentVesselAll(){
+        return paymentService.getPaymentVesselAll();
     }
-    @GetMapping("/payment/{id}")
-    public ResponseEntity<?> getById(@PathVariable long id){
-        return ResponseEntity.ok(paymentService.getByPaymentId(id));
-    }
-    @PutMapping("/payment/{id}")
-    public ResponseEntity<?> update (@PathVariable long id, PaymentDTO paymentDTO){
-        return ResponseEntity.ok(paymentService.updateByid(id, paymentDTO));
-    }
+   
+
+    // @GetMapping("/payment/fisherman/{id}")
+    // public ResponseEntity<?> getById(@PathVariable long id){
+    //     return ResponseEntity.ok(paymentService.getByPaymentId(id));
+    // }
+    // @PutMapping("/payment/{id}")
+    // public ResponseEntity<?> update (@PathVariable long id, PaymentDTO paymentDTO){
+    //     return ResponseEntity.ok(paymentService.updateByid(id, paymentDTO));
+    // }
 }

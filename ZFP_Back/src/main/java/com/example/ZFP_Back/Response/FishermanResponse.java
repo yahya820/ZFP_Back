@@ -1,20 +1,21 @@
-package com.example.ZFP_Back.Model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.Table;
+package com.example.ZFP_Back.Response;
+
+import java.time.LocalDate;
+
 import lombok.Data;
 @Data
-@Entity
-@Table (name = "User")
-public class User {
-     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class FishermanResponse {
+
+    private Long fishermanId;
+    private String ways;
+    private LocalDate start_date;
+    private LocalDate finish_date;
+    private String diko_usage;
+    private String type;
+    private String meter;
+
     private Long userId;
     private String name;
-    @Lob
     private byte[] image;
     private String work;
     private String address;
@@ -28,6 +29,11 @@ public class User {
     private String email;
     private String leader;
     private String roles;
+
+    private Long paymentId;
+    private String acc_name;
+    private int receipt_no;
+    private LocalDate date;
 
     
 }

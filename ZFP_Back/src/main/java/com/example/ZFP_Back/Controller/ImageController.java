@@ -17,6 +17,7 @@ public class ImageController {
 
     @Autowired
     public ImageService imageService;
+    
     @PostMapping(value ="upload")
     public ResponseEntity uploadImage(@RequestParam MultipartFile     file){
         return this.imageService.uploadToLocalFileSystem(file);

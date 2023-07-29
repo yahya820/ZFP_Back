@@ -13,7 +13,23 @@ public class FIshermanDTO {
     private String diko_usage;
     private String type;
     private String meter;
+
+
     private Long userId;
+    // private String name;
+    // private byte[] image;
+    // private String work;
+    // private String address;
+    // private String phone;
+    // private int identity;
+    // private String nationality;
+    // private String sex;
+    // private int age;
+    // private String username;
+    // private String pass;
+    // private String email;
+    // private String leader;
+    // private String roles;
 
     // private List<Payment> paymentList = new ArrayList<>();
 

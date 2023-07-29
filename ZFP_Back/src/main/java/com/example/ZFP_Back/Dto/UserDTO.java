@@ -9,7 +9,7 @@ public class UserDTO {
     private byte[] image;
     private String work;
     private String address;
-    private int phone;
+    private String phone;
     private int identity;
     private String nationality;
     private String sex;

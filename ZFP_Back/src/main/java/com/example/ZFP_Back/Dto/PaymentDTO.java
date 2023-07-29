@@ -11,8 +11,6 @@ public class PaymentDTO {
     private byte [] receipt_image;
     private LocalDate date;
 
-    // private Long fishermanId;
-    // private Long vessel_id;
     private Long fishermanId;
     
 }

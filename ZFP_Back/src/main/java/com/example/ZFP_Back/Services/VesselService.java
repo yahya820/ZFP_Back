@@ -2,6 +2,7 @@ package com.example.ZFP_Back.Services;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.ZFP_Back.Dto.vesselDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
-import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Model.Vessel;
 import com.example.ZFP_Back.Repository.VesselRepository;
 
@@ -29,10 +29,7 @@ public class VesselService {
 
     // post vessel
    public Vessel post(vesselDTO vDto){
-    User user = new User();
-    user.setUserId(vDto.getUserId());
     Vessel vessel = modelMapper.map(vDto, Vessel.class);
-    vessel.setUser(user);
     return vesselRepository.save(vessel);
    }
    
@@ -41,6 +38,10 @@ public class VesselService {
     return vesselRepository.findById(id);
    }
 
+   //get by userID 
+//    public Optional<Map<String,Object>>getByUserID(long id){
+//     return vesselRepository.findbyUserId(id);
+//    }
    // update
    public Vessel update(long id, vesselDTO vDto){
     Vessel vessel = vesselRepository.findById(id)

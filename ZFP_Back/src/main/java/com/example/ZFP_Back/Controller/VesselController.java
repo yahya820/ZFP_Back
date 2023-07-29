@@ -32,6 +32,10 @@ public class VesselController {
     public ResponseEntity<?> getBuId (@PathVariable long id){
         return ResponseEntity.ok(vesselService.getById(id));
     }
+    // @GetMapping("/vessel/user/{id}")
+    // public ResponseEntity<?> getByUserId(@PathVariable long id){
+    //     return ResponseEntity.ok(vesselService.getByUserID(id));
+    // }
     @PostMapping("/vessel")
     public ResponseEntity <?> post (@RequestBody vesselDTO vDto){
         Vessel vessel = vesselService.post(vDto);

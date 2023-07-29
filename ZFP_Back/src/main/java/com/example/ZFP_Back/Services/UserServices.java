@@ -65,11 +65,6 @@ public class UserServices {
     public Optional<User> getByUsername(String name) {
         return userRepository.getByUsername(name);
     }
-
-    //get By UserId
-    public Optional<User> getByUserId(long userId){
-        return userRepository.getByUserId(userId);
-    }
     //Delete by Id
      public void deleteById(long id){
          userRepository.deleteById(id);
@@ -88,7 +83,7 @@ public class UserServices {
         // user.setLeader(userDTO.getLeader());
         user.setName(userDTO.getName());
         user.setNationality(userDTO.getNationality());
-        user.setPhone(userDTO.getUserId());
+        user.setPhone(userDTO.getPhone());
         user.setUsername(userDTO.getUsername()); 
         user.setImage(userDTO.getImage());
       return userRepository.save(user);

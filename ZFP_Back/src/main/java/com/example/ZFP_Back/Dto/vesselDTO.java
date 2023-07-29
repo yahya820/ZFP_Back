@@ -16,5 +16,6 @@ public class vesselDTO {
     private LocalDate finish_date;
     private int meter;
 
+
     private Long userId;
 }

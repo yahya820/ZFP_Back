@@ -3,15 +3,21 @@ package com.example.ZFP_Back.Services;
 import com.example.ZFP_Back.Dto.FIshermanDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
 import com.example.ZFP_Back.Model.Fisherman;
+import com.example.ZFP_Back.Model.Payment;
 import com.example.ZFP_Back.Model.User;
 // import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Repository.FishermanRepository;
+import com.example.ZFP_Back.Repository.PaymentRepository;
+import com.example.ZFP_Back.Request.FishermanRequest;
+import com.example.ZFP_Back.Response.FishermanResponse;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -28,10 +34,10 @@ public class FishermanService {
 //        return fishermen.stream().map(fisherman -> modelMapper.map(fisherman, FishermanDTO.class)).collect(Collectors.toList());
 //    }
     //Add fisherman
-    public Fisherman create(FIshermanDTO fIshermanDTO){
+    public Fisherman create(FishermanRequest fishermanRequest){
         User user = new User();
-       user.setUserId(fIshermanDTO.getUserId());
-        Fisherman fisherman = modelMapper.map(fIshermanDTO, Fisherman.class);
+        user.setUserId(fishermanRequest.getUserId());
+        Fisherman fisherman = modelMapper.map(fishermanRequest, Fisherman.class);
         fisherman.setUser(user);
         return fishermanRepository.save(fisherman);
     }
@@ -42,10 +48,9 @@ public class FishermanService {
         return fishermanList;
     }
 
-   public Optional <Fisherman> getByFishemanId(long id){
+   public Optional <Map<String,Object>> getByFishemanId(long id){
     return fishermanRepository.findallByFishermanId(id);
    }
-
     
     //get By Id
     public Optional<Fisherman> getById(Long fishermanId){
