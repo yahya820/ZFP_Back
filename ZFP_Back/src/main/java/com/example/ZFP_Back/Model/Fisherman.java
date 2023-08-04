@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,5 +30,10 @@ public class Fisherman {
     
     @OneToOne
     private User user;
+
+    // private Long paymentFishermanId;
+    @JsonIgnoreProperties(value = "fisherman")
+    @OneToMany(mappedBy = "fisherman")
+    private List<PaymentFisherman> paymentFishermans = new ArrayList<>();
 
 }

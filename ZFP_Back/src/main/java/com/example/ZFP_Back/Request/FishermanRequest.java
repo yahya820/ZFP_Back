@@ -1,6 +1,9 @@
 package com.example.ZFP_Back.Request;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.example.ZFP_Back.Model.PaymentFisherman;
 
 import lombok.Data;
 
@@ -17,5 +20,6 @@ public class FishermanRequest {
     private Long userId;
 
     // private User user;
-    private Long paymentId;
+    // private Long paymentFishermanId;
+    private List<PaymentFisherman> paymentFishermans;
 }

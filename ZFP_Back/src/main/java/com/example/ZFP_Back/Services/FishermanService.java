@@ -4,15 +4,18 @@ import com.example.ZFP_Back.Dto.FIshermanDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
 import com.example.ZFP_Back.Model.Fisherman;
 import com.example.ZFP_Back.Model.Payment;
+import com.example.ZFP_Back.Model.PaymentFisherman;
 import com.example.ZFP_Back.Model.User;
 // import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Repository.FishermanRepository;
+import com.example.ZFP_Back.Repository.PaymentFishermanRepository;
 import com.example.ZFP_Back.Repository.PaymentRepository;
 import com.example.ZFP_Back.Request.FishermanRequest;
 import com.example.ZFP_Back.Response.FishermanResponse;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,6 +28,8 @@ public class FishermanService {
 
     @Autowired
     private FishermanRepository fishermanRepository;
+    @Autowired
+    private PaymentFishermanRepository paymentFishermanRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -37,24 +42,34 @@ public class FishermanService {
     public Fisherman create(FishermanRequest fishermanRequest){
         User user = new User();
         user.setUserId(fishermanRequest.getUserId());
+        
         Fisherman fisherman = modelMapper.map(fishermanRequest, Fisherman.class);
+        // fisherman.setPaymentFishermans(fishermanRequest.getPaymentFishermans());
+    //   List  <PaymentFisherman> paymentFisherman = paymentFishermanRepository.save(fisherman);
         fisherman.setUser(user);
         return fishermanRepository.save(fisherman);
     }
 
     //GetAll Fisherman
-    public List<Fisherman> getAll(){
-        List<Fisherman> fishermanList = fishermanRepository.findAll();
-        return fishermanList;
+    public List<Map<String,Object>> getAll(){
+         return fishermanRepository.getAll();
     }
+
+    //getAllFisherman
+    public List<Fisherman> getAllFisherman(){
+        return fishermanRepository.findAll();
+    }
+
+    
+
 
    public Optional <Map<String,Object>> getByFishemanId(long id){
     return fishermanRepository.findallByFishermanId(id);
    }
     
     //get By Id
-    public Optional<Fisherman> getById(Long fishermanId){
-        return fishermanRepository.findById(fishermanId);
+    public Optional<Map<String,Object>> getById(Long fishermanId){
+        return fishermanRepository.findByFisherId(fishermanId);
     }
     // update Fisherman
     public void deleteFisherman(Long fishermanId) {

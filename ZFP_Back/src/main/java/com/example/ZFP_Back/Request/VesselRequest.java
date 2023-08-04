@@ -1,15 +1,10 @@
-package com.example.ZFP_Back.Model;
+package com.example.ZFP_Back.Request;
 
-import jakarta.persistence.*;
-import lombok.Data;
 import java.time.LocalDate;
 
+import lombok.Data;
 @Data
-@Entity
-@Table( name = "Vessel" )
-public class Vessel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class VesselRequest {
     private Long vesselId;
     private String name_vessel;
     private String type_vessel;
@@ -20,7 +15,5 @@ public class Vessel {
     private LocalDate finish_date;
     private int meter;
 
-    @ManyToOne
-    @JoinColumn( name = "userId")
-    private User user;
+    private Long userId;
 }

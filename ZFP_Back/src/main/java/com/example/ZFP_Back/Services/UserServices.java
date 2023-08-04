@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 // import javax.crypto.EncryptedPrivateKeyInfo;
@@ -61,6 +62,11 @@ public class UserServices {
         return userRepository.findById(id);
     }
 
+    // getUser and Fisherman
+    public Optional<Map<String,Object>> getUserIdandFishermanId(Long id){
+        return userRepository.getUserIdandFishermanId(id);
+    }
+
     // get User by Username
     public Optional<User> getByUsername(String name) {
         return userRepository.getByUsername(name);
@@ -81,11 +87,20 @@ public class UserServices {
         user.setAge(userDTO.getAge());
         user.setIdentity(userDTO.getIdentity());
         // user.setLeader(userDTO.getLeader());
-        user.setName(userDTO.getName());
+        // user.setName(userDTO.getName());
         user.setNationality(userDTO.getNationality());
         user.setPhone(userDTO.getPhone());
-        user.setUsername(userDTO.getUsername()); 
-        user.setImage(userDTO.getImage());
+        // user.setUsername(userDTO.getUsername()); 
+        // user.setImage(userDTO.getImage());
+      return userRepository.save(user);
+    }
+
+    //Update By leader Only
+    public User editleader(long id, UserDTO userDTO){
+        User user = userRepository.findById(id)
+        .orElseThrow(()-> new ResourceNotFoundException("User Not Found",id));
+        modelMapper.map(userDTO, User.class);
+        user.setLeader(userDTO.getLeader());
       return userRepository.save(user);
     }
 

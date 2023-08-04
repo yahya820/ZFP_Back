@@ -1,25 +1,25 @@
 package com.example.ZFP_Back.Response;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.example.ZFP_Back.Model.PaymentFisherman;
-
+import jakarta.persistence.Lob;
 import lombok.Data;
 @Data
-public class FishermanResponse {
-
-    private Long fishermanId;
+public class VesselResponse {
+    private Long vesselId;
+    private String name_vessel;
+    private String type_vessel;
+    private String no_vessel;
+    private int no_people;
     private String ways;
     private LocalDate start_date;
     private LocalDate finish_date;
-    private String diko_usage;
-    private String type;
-    private String meter;
+    private int meter;
 
-    private Long userId;
+    
+     private Long userId;
     private String name;
+    @Lob
     private byte[] image;
     private String work;
     private String address;
@@ -33,13 +33,4 @@ public class FishermanResponse {
     private String email;
     private String leader;
     private String roles;
-
-    // private Long paymentId;
-    // private String acc_name;
-    // private int receipt_no;
-    // private LocalDate date;
-
-    private List<PaymentFisherman> paymentFishermans = new ArrayList<>();
-
-    
 }

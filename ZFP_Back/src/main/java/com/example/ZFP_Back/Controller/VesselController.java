@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ZFP_Back.Dto.vesselDTO;
 import com.example.ZFP_Back.Model.Vessel;
+import com.example.ZFP_Back.Request.VesselRequest;
 import com.example.ZFP_Back.Services.VesselService;
 
 @RestController
@@ -28,6 +29,10 @@ public class VesselController {
     public List <Vessel> getAll(){
         return vesselService.getAll();
     }
+    @GetMapping("/vessel/profile")
+    public List<?> getAllVesselInProfile(){
+        return vesselService.getAllVesselInProfile();
+    }
     @GetMapping("/vessel/{id}")
     public ResponseEntity<?> getBuId (@PathVariable long id){
         return ResponseEntity.ok(vesselService.getById(id));
@@ -37,9 +42,8 @@ public class VesselController {
     //     return ResponseEntity.ok(vesselService.getByUserID(id));
     // }
     @PostMapping("/vessel")
-    public ResponseEntity <?> post (@RequestBody vesselDTO vDto){
-        Vessel vessel = vesselService.post(vDto);
-        return ResponseEntity.ok(vessel);
+    public ResponseEntity <?> post (@RequestBody VesselRequest vesselRequest){
+        return ResponseEntity.ok(vesselService.post(vesselRequest));
     }
     @PutMapping("/vessel/{id}")
     public ResponseEntity <?> update (@PathVariable long id, @RequestBody vesselDTO vDto){

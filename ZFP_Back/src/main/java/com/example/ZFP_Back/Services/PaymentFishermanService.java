@@ -2,6 +2,8 @@ package com.example.ZFP_Back.Services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -21,47 +23,49 @@ public class PaymentFishermanService {
     @Autowired
     private ModelMapper modelMapper;
 
-
-     //getAll payment with fisherman and user
-   public List<PaymentFishermanResponse> getPaymentFishermanAll(){
-    // List<PaymentFishermanResponse> list = new ArrayList<>();
-    // for (PaymentFisherman paymentFisherman : paymentFishermanRepository.findAll()){
-    //     PaymentFishermanResponse paymentFishermanResponse = modelMapper.map(paymentFisherman,PaymentFishermanResponse.class);
-
-    //     paymentFishermanResponse.setAcc_name(paymentFisherman.getAcc_name());
-    //     paymentFishermanResponse.setReceipt_no(paymentFisherman.getReceipt_no());
-    //     paymentFishermanResponse.setDate(paymentFisherman.getDate());
-
-    //     paymentFishermanResponse.setUserId(paymentFisherman.getFisherman().getUser().getUserId());
-    //     paymentFishermanResponse.setName(paymentFisherman.getFisherman().getUser().getName());
-    //     paymentFishermanResponse.setWork(paymentFisherman.getFisherman().getUser().getWork());
-    //     paymentFishermanResponse.setAddress(paymentFisherman.getFisherman().getUser().getAddress());
-    //     paymentFishermanResponse.setPhone(paymentFisherman.getFisherman().getUser().getPhone());
-    //     paymentFishermanResponse.setIdentity(paymentFisherman.getFisherman().getUser().getIdentity());
-
-    //     paymentFishermanResponse.setDiko_usage(paymentFisherman.getFisherman().getDiko_usage());
-    //     paymentFishermanResponse.setMeter(paymentFisherman.getFisherman().getMeter());
-    //     paymentFishermanResponse.setType(paymentFisherman.getFisherman().getType());
-    //     paymentFishermanResponse.setWays(paymentFisherman.getFisherman().getWays());
-
-    //     list.add(paymentFishermanResponse);
-    // }
-    // return list;
-    return paymentFishermanRepository.findAllPaymentFisherman();
-   }
-
-    //post payment with fisherman
-    public PaymentFisherman postFisherman(PaymentFishermanRequest paymentFishermanRequest){
+    //post Payment with id of fisherman
+    public PaymentFisherman postPayment(PaymentFishermanRequest paymentFishermanRequest){
         Fisherman fisherman = new Fisherman();
         fisherman.setFishermanId(paymentFishermanRequest.getFishermanId());
-        PaymentFisherman paymentFisherman = modelMapper.map(paymentFishermanRequest,PaymentFisherman.class);
+        PaymentFisherman paymentFisherman = modelMapper.map(paymentFishermanRequest, PaymentFisherman.class);
         paymentFisherman.setFisherman(fisherman);
         return paymentFishermanRepository.save(paymentFisherman);
     }
 
+
+//      //getAll payment with fisherman and user
+//    public List<Map<String,Objects>> getPaymentFishermanAll(){
+//     PaymentFishermanResponse paymentFishermanResponse = null;
+//     List list = new ArrayList<>();
+//     for (Map<String,Objects> data : paymentFishermanRepository.findAllPaymentFisherman()){
+//         paymentFishermanResponse = modelMapper.map(data, PaymentFishermanResponse.class);
+//         list.add(paymentFishermanResponse);
+//     }
+//     return list;
+//    }
+
+
     //getById use userId
-    public List<PaymentFishermanResponse> getByUserId(Long id){
-        return paymentFishermanRepository.findByUserId(id);
+    public List<Map<String,Objects>> getByUserId(Long id){
+        List list = new ArrayList<>();
+        PaymentFishermanResponse paymentFishermanResponse = null;
+        for(Map<String,Objects> data : paymentFishermanRepository.findByUserId(id)){
+            paymentFishermanResponse = modelMapper.map(data, PaymentFishermanResponse.class);
+            list.add(paymentFishermanResponse);
+        }
+        return list;
     }
+
+    public List<Map<String,Object[]>> getAll(){
+        return paymentFishermanRepository.getAll();
+    }
+
+    public List<Map<String,Object>>getAllPayment(){
+        return paymentFishermanRepository.FindAllPayment();
+    }
+    // public List<PaymentFishermanResponse> getAllPaymentByUserId(Long id){
+    //     return paymentFishermanRepository.getPaymentByUserId(id);
+    // }
+
 
 }

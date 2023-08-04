@@ -32,10 +32,18 @@ public class UserController {
     public ResponseEntity<?> getByid(@PathVariable long id){
         return ResponseEntity.ok(userServices.getById(id));
     }
+    @GetMapping("/users/fisherman/{id}")
+    public ResponseEntity<?> getUserIdandFishermanId(@PathVariable Long id){
+        return ResponseEntity.ok(userServices.getUserIdandFishermanId(id));
+    }
 
     @PutMapping("/users/{id}")
    public ResponseEntity<?> update (@PathVariable long id, @RequestBody UserDTO userDTO){
     return ResponseEntity.ok(userServices.editById(id, userDTO));
+   }
+   @PutMapping("/users/leader/{id}")
+   public ResponseEntity<?> updateleader (@PathVariable long id, @RequestBody UserDTO userDTO){
+    return ResponseEntity.ok(userServices.editleader(id, userDTO));
    }
    
    @DeleteMapping("/users/{id}")

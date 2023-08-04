@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.ZFP_Back.Dto.vesselDTO;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
+import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Model.Vessel;
 import com.example.ZFP_Back.Repository.VesselRepository;
+import com.example.ZFP_Back.Request.VesselRequest;
 
 @Service
 public class VesselService {
@@ -26,12 +28,21 @@ public class VesselService {
         List <Vessel> vesselList = vesselRepository.findAll();
         return vesselList;
     }
+    // getAllVesselinProfile
+    public List<Map<String,Object>> getAllVesselInProfile(){
+        return vesselRepository.getAllVesselInProfile();
+    }
 
     // post vessel
-   public Vessel post(vesselDTO vDto){
-    Vessel vessel = modelMapper.map(vDto, Vessel.class);
+   public Vessel post(VesselRequest vesselRequest){
+    User user = new User();
+    user.setUserId(vesselRequest.getUserId());
+    Vessel vessel = modelMapper.map(vesselRequest, Vessel.class);
+    vessel.setUser(user);
     return vesselRepository.save(vessel);
    }
+
+   
    
    // get By Id
    public Optional<Vessel> getById(long id){

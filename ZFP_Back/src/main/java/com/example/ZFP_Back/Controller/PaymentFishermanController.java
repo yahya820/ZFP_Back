@@ -20,18 +20,30 @@ import com.example.ZFP_Back.Services.PaymentFishermanService;
 public class PaymentFishermanController {
     @Autowired
     private PaymentFishermanService paymentFishermanService; 
-   @PostMapping("/payment/fisherman")
-    public ResponseEntity<?> post(@RequestBody PaymentFishermanRequest paymentFishermanRequest){
-        return ResponseEntity.ok(paymentFishermanService.postFisherman(paymentFishermanRequest));
-    }
-
+    // @GetMapping("/payment/fisherman")
+    // public List <?> getPaymentFishermanAll(){
+    //     return paymentFishermanService.getPaymentFishermanAll();
+    // } 
     @GetMapping("/payment/fisherman")
     public List <?> getPaymentFishermanAll(){
-        return paymentFishermanService.getPaymentFishermanAll();
+        return paymentFishermanService.getAll();
     } 
 
     @GetMapping("/payment/fisherman/{id}")
     public List<?> getByUserId(@PathVariable Long id){
         return paymentFishermanService.getByUserId(id);
     }
+    @GetMapping("/payment/allPayment")
+    public List <?> getAllPayment(){
+        return paymentFishermanService.getAllPayment();
+    }
+    // @GetMapping("/payment/paymentAllByuserID/{id}")
+    // public List<?>getPaymentByUserId(@PathVariable Long id){
+    //     return paymentFishermanService.getAllPaymentByUserId(id);
+    // }
+    @PostMapping("payment/fisherman")
+    public ResponseEntity<?> post(@RequestBody PaymentFishermanRequest paymentFishermanRequest){
+        return ResponseEntity.ok(paymentFishermanService.postPayment(paymentFishermanRequest));
+    }
+
 }

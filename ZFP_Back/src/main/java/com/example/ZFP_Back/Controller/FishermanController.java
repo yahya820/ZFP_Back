@@ -39,8 +39,12 @@ public class FishermanController {
     // public List <Fisherman> getAll(){
     //     return fishermanRepository.findAll();
     // }
-    public List<Fisherman> getAll(){
+    public List<?> getAll(){
         return fishermanService.getAll();
+    }
+    @GetMapping("/fisherman/By1")
+    public List<?> getAllFisherman(){
+        return fishermanService.getAllFisherman();
     }
 
     // @PostMapping("/fisherman")
@@ -53,18 +57,16 @@ public class FishermanController {
     //     return fishermanService.getAll();
     // }
 
-    // @GetMapping("/fisherman/user/{id}")
-    // public ResponseEntity<Object> getByfishermanId(@PathVariable long id){
-    //     return ResponseEntity.ok(fishermanService.getByFishemanId(id));
-    // }
+   
 
-    // @GetMapping("/fisherman/{id}")
-    // public ResponseEntity<?> getByID(@PathVariable Long id){
-    //     return ResponseEntity.ok(fishermanService.getById(id));
-    // }
-    // @PutMapping("/fisherman/{id}")
-    // public ResponseEntity <?> update(@PathVariable long id, @RequestBody FIshermanDTO fIshermanDTO){
-    //     return ResponseEntity.ok(fishermanService.update(id, fIshermanDTO));
-    // }
+    @GetMapping("/fisherman/{id}")
+    public ResponseEntity<?> getByID(@PathVariable Long id){
+        return ResponseEntity.ok(fishermanService.getById(id));
+    }
+    
+    @PutMapping("/fisherman/{id}")
+    public ResponseEntity <?> update(@PathVariable long id, @RequestBody FIshermanDTO fIshermanDTO){
+        return ResponseEntity.ok(fishermanService.update(id, fIshermanDTO));
+    }
 
 }

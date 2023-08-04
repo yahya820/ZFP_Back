@@ -3,6 +3,7 @@ package com.example.ZFP_Back.Repository;
 import com.example.ZFP_Back.Model.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 // import org.springframework.data.jdbc.repository.query.Query;
@@ -27,5 +28,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query (value = " select * from user where roles='USER'", nativeQuery = true)
     List<User> findAll();
+    @Query (value = "select * from user u JOIN fisherman f ON f.fisherman_id = u.user_id WHERE u.user_id = ?1", nativeQuery = true)
+    Optional<Map<String,Object>>getUserIdandFishermanId(Long userId);
 }
 
