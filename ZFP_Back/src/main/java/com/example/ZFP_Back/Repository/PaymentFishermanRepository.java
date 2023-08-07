@@ -19,8 +19,8 @@ public interface PaymentFishermanRepository extends JpaRepository<PaymentFisherm
     //     + "FROM PaymentFisherman pa JOIN pa.fisherman f WHERE f.user.userId = 2")
     // @Query("SELECT new com.example.ZFP_Back.Response.PaymentFishermanResponse(pa.paymentFishermanId, pa.acc_name, pa.receipt_no, pa.date, f.user.userId, f.user.name, f.user.work, f.user.address, f.user.phone, f.user.sex, f.user.identity, f.ways, f.diko_usage, f.type, f.meter) "
     //     + "FROM PaymentFisherman pa JOIN pa.fisherman f JOIN f.user u WHERE f.fishermanId = ?1")
-    @Query(value = "SELECT pa.payment_fisherman_id, pa.acc_name, pa.receipt_no, pa.date, u.user_id,u.email,u.leader,u.name, u.work, u.address,u.nationality, u.phone, u.sex, u.identity, f.ways, f.diko_usage, f.type, f.meter FROM Payment_fisherman pa JOIN fisherman f JOIN user u WHERE u.user_id = ?1",nativeQuery = true)
-    List<Map<String,Objects>> findByUserId(Long userId);
+    @Query(value = "SELECT pa.payment_fisherman_id, pa.acc_name, pa.receipt_no, pa.date, u.user_id,u.email,u.leader,u.name, u.work, u.address,u.nationality, u.phone, u.sex, u.identity, f.ways, f.diko_usage, f.type, f.meter FROM Payment_fisherman pa JOIN fisherman f JOIN user u ON pa.id = f.fisherman_id and u.user_id = f.user_user_id WHERE f.fisherman_id = ?1",nativeQuery = true)
+    List<Map<String,Objects>> findByUserId(Long fishermanId);
      @Query(value ="SELECT pa.payment_fisherman_id, pa.acc_name, pa.receipt_no, pa.date, u.user_id,u.email,u.leader,u.name, u.work, u.address,u.nationality, u.phone, u.sex, u.identity, f.ways, f.diko_usage, f.type, f.meter FROM Payment_fisherman pa JOIN fisherman f JOIN user u ",nativeQuery = true)
     List<Map<String,Objects>> findAllPaymentFisherman();
     @Query(value ="SELECT DISTINCT pa.payment_fisherman_id, pa.acc_name, pa.receipt_no, pa.date, " +

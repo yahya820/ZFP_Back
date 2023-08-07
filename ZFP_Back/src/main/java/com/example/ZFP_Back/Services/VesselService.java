@@ -42,7 +42,10 @@ public class VesselService {
     return vesselRepository.save(vessel);
    }
 
-   
+   //get Vessel by id to get all vessel according to the vessel Id
+//    public Optional<Vessel>findByVesselId(long id){
+//     return vesselRepository.findById(id);
+//    }
    
    // get By Id
    public Optional<Vessel> getById(long id){

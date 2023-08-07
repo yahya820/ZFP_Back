@@ -63,7 +63,11 @@ public class FishermanController {
     public ResponseEntity<?> getByID(@PathVariable Long id){
         return ResponseEntity.ok(fishermanService.getById(id));
     }
-    
+    @GetMapping("/fisherman/find/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id){
+        return ResponseEntity.ok(fishermanService.findById(id));
+    }
+
     @PutMapping("/fisherman/{id}")
     public ResponseEntity <?> update(@PathVariable long id, @RequestBody FIshermanDTO fIshermanDTO){
         return ResponseEntity.ok(fishermanService.update(id, fIshermanDTO));

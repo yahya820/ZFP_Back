@@ -2,6 +2,8 @@ package com.example.ZFP_Back.Model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,4 +21,7 @@ public class Algae {
     private int tones;
     private String type;
     private LocalDate date;
+
+    @ManyToOne
+    private Location location;
 }

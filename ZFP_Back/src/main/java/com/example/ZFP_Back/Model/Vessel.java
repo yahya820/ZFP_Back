@@ -3,6 +3,10 @@ package com.example.ZFP_Back.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @Entity
@@ -23,4 +27,8 @@ public class Vessel {
     @ManyToOne
     @JoinColumn( name = "userId")
     private User user;
+
+    @JsonIgnoreProperties(value = "vessel")
+    @OneToMany(mappedBy = "vessel")
+    private List <PaymentVessel> payment_vessel_list= new ArrayList<>();
 }

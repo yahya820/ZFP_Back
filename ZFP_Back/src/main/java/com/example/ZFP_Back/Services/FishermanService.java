@@ -75,6 +75,11 @@ public class FishermanService {
     public void deleteFisherman(Long fishermanId) {
         fishermanRepository.deleteById(fishermanId);
     }
+
+    //getby fishermanId
+    public Optional<Fisherman> findById(Long id){
+        return fishermanRepository.findById(id);
+    }
     public Fisherman update(long id, FIshermanDTO fIshermanDTO){
         Fisherman fisherman = fishermanRepository.findById(id)
         .orElseThrow(()-> new ResourceNotFoundException("Fisherman id not Found",id));

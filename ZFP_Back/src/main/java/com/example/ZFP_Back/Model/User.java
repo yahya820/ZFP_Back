@@ -28,6 +28,7 @@ public class User {
     private String email;
     private String leader;
     private String roles;
+    private String message;
 
     
 }
