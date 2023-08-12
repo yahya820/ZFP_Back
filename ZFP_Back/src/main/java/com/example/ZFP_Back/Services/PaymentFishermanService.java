@@ -1,5 +1,6 @@
 package com.example.ZFP_Back.Services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -60,12 +61,26 @@ public class PaymentFishermanService {
         return paymentFishermanRepository.getAll();
     }
 
-    public List<Map<String,Object>>getAllPayment(){
-        return paymentFishermanRepository.FindAllPayment();
+    public List getAllPayment(){
+        List list = new ArrayList<>();
+        PaymentFishermanResponse paymentFishermanResponse = null;
+        for(Map<String,Object> data : paymentFishermanRepository.FindAllPayment()){
+            paymentFishermanResponse = modelMapper.map(data, PaymentFishermanResponse.class);
+            list.add(paymentFishermanResponse);
+        }
+        return list;
     }
-    // public List<PaymentFishermanResponse> getAllPaymentByUserId(Long id){
-    //     return paymentFishermanRepository.getPaymentByUserId(id);
-    // }
+    
+    //get Payment By Date
+    public List getPaymentByDate(LocalDate startDate, LocalDate endDate){
+        List list = new ArrayList<>();
+        PaymentFishermanResponse paymentFishermanResponse = null;
+        for(Map<String,Object> data : paymentFishermanRepository.getPaymentByDate(startDate, endDate)){
+            paymentFishermanResponse = modelMapper.map(data,PaymentFishermanResponse.class);
+            list.add(paymentFishermanResponse);
+        }
+        return list;
+    }
 
 
 }

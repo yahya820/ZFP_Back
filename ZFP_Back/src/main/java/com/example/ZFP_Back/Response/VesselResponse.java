@@ -33,4 +33,11 @@ public class VesselResponse {
     private String email;
     private String leader;
     private String roles;
+
+    private Long paymentId;
+    private String acc_name;
+    private int receipt_no;
+    private LocalDate date;
+
+
 }

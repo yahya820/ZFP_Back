@@ -7,6 +7,6 @@ public class MfanoResponse {
     private Long mfanoId;
     private String name;
 
-    private Long userId;
-    private String email;
+    // private Long userId;
+    // private String email;
 }

@@ -1,5 +1,6 @@
 package com.example.ZFP_Back.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.relational.core.sql.TrueCondition;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.ZFP_Back.Model.PaymentFisherman;
@@ -31,11 +33,18 @@ public interface PaymentFishermanRepository extends JpaRepository<PaymentFisherm
     "JOIN payment_fisherman pa WHERE u.user_id = f.fisherman_id and f.fisherman_id = pa.fisherman_fisherman_id",nativeQuery = true)   
      List<Map<String,Object[]>> getAll();
     
-     @Query(value = "select u.name,pa.acc_name,pa.receipt_no,pa.date from payment_fisherman pa JOIN user u WHERE u.roles ='USER'",nativeQuery = true)
+     @Query(value = "select u.name,pa.acc_name,pa.receipt_no,pa.date from payment_fisherman pa JOIN user u JOIN fisherman f ON f.fisherman_id = pa.id and u.user_id = f.user_user_id ",nativeQuery = true)
      List<Map<String,Object>>FindAllPayment();
 
-    // @Query("SELECT new com.example.ZFP_Back.Response.PaymentFishermanResponse(u.userId,pa.acc_name, pa.receipt_no, pa.date) "
-    //      + "FROM PaymentFisherman pa JOIN pa.fisherman f JOIN f.user u WHERE u.userId = ?1")
-    // @Query( value = "Select pa.acc_name,pa.receipt_no,pa.date from payment_fisherman pa JOIN fisherman f JOIN user u ON f.fisherman_id = u.user_id WHERE u.user_id =?1", nativeQuery = true)
-    //  List<Map<String,Object>>getPaymentByUserId(Long id);
+     @Query( value = "SELECT * FROM payment_fisherman WHERE date BETWEEN ?1 and ?2",nativeQuery = true)
+     List<PaymentFisherman> getCostandProducedByDate(LocalDate starDate , LocalDate enDate); 
+
+    @Query( value = "SELECT u.name,pa.receipt_no,pa.date, pa.acc_name from payment_fisherman pa JOIN user u JOIN fisherman f ON f.fisherman_id = pa.id and u.user_id = f.user_user_id  WHERE pa.date BETWEEN ?1 and ?2",nativeQuery = true)
+     List<Map<String,Object>> getPaymentByDate(LocalDate startDate , LocalDate endDate);
+
+    //   @Query("SELECT a.* FROM Payment_fisherman a WHERE a.date >= ?1 AND a.date <= ?2")
+    // List<PaymentFisherman> findActivitiesByDateRange(
+    //     @Param("startDate") LocalDate startDate,
+    //     @Param("finishDate") LocalDate finishDate
+    // );
 }

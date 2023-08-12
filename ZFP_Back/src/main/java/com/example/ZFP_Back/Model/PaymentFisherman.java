@@ -23,6 +23,7 @@ public class PaymentFisherman {
     private Long paymentFishermanId;
     private String acc_name;
     private int receipt_no;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     // @JsonIgnoreProperties( value = "paymentFishermans")
     @ManyToOne

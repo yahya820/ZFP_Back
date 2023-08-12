@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ZFP_Back.Dto.vesselDTO;
 import com.example.ZFP_Back.Model.Vessel;
 import com.example.ZFP_Back.Request.VesselRequest;
+import com.example.ZFP_Back.Response.VesselResponse;
 import com.example.ZFP_Back.Services.VesselService;
 
 @RestController
@@ -37,16 +38,20 @@ public class VesselController {
     public ResponseEntity<?> getBuId (@PathVariable long id){
         return ResponseEntity.ok(vesselService.getById(id));
     }
-    // @GetMapping("/vessel/user/{id}")
-    // public ResponseEntity<?> getByUserId(@PathVariable long id){
-    //     return ResponseEntity.ok(vesselService.getByUserID(id));
-    // }
+    @GetMapping("/vessel/user/{id}")
+    public ResponseEntity<?> getVesselByUserId(@PathVariable long id){
+        return ResponseEntity.ok(vesselService.getVesselByuserId(id));
+    }
+    @GetMapping("/vessel/profile/{id}")
+    public List<?> getVesselInProfile(@PathVariable Long id){
+        return vesselService.getVesselInProfile(id);
+    }
     @PostMapping("/vessel")
     public ResponseEntity <?> post (@RequestBody VesselRequest vesselRequest){
         return ResponseEntity.ok(vesselService.post(vesselRequest));
     }
     @PutMapping("/vessel/{id}")
-    public ResponseEntity <?> update (@PathVariable long id, @RequestBody vesselDTO vDto){
-        return ResponseEntity.ok(vesselService.update(id, vDto));
+    public ResponseEntity <?> update (@PathVariable long id, @RequestBody VesselResponse vesselResponse){
+        return ResponseEntity.ok(vesselService.update(id, vesselResponse));
     }
 }

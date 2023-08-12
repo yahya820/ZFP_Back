@@ -71,6 +71,7 @@ public class FishermanService {
     public Optional<Map<String,Object>> getById(Long fishermanId){
         return fishermanRepository.findByFisherId(fishermanId);
     }
+
     // update Fisherman
     public void deleteFisherman(Long fishermanId) {
         fishermanRepository.deleteById(fishermanId);
@@ -89,6 +90,7 @@ public class FishermanService {
         fisherman.setStart_date(LocalDate.now());
         fisherman.setMeter(fIshermanDTO.getMeter());
         fisherman.setWays(fIshermanDTO.getWays());
+        fisherman.setType(fIshermanDTO.getType());
         return fishermanRepository.save(fisherman);
     }
 }

@@ -42,7 +42,7 @@ public class PaymentService {
         PaymentVesselResponse paymentVesselResponse = modelMapper.map(paymentVessel, PaymentVesselResponse.class);
 
         paymentVesselResponse.setAcc_name(paymentVessel.getAcc_name());
-        paymentVesselResponse.setDate(paymentVessel.getDate());
+        // paymentVesselResponse.setDate(paymentVessel.getDate());
         paymentVesselResponse.setReceipt_no(paymentVessel.getReceipt_no());
 
         // paymentVesselResponse.setName_vessel(payment.getVessel().getName_vessel());

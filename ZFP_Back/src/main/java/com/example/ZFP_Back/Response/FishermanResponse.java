@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ZFP_Back.Model.PaymentFisherman;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 @Data
@@ -12,8 +13,10 @@ public class FishermanResponse {
 
     private Long fishermanId;
     private String ways;
-    private LocalDate start_date;
-    private LocalDate finish_date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String start_date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String finish_date;
     private String diko_usage;
     private String type;
     private String meter;

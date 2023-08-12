@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
@@ -22,7 +23,9 @@ public class Fisherman {
     @GeneratedValue ( strategy = GenerationType.AUTO)
     private Long fishermanId;
     private String ways;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate start_date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate finish_date;
     private String diko_usage;
     private String type;
