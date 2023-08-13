@@ -36,4 +36,8 @@ public class MessageService {
     public List <Map<String,Object>> getAllByuserId(Long userId){
       return mesaageRepository.getMessage(userId);  
     }
+    //get Count
+    public Long getCount(){
+      return mesaageRepository.count();
+    }
 }

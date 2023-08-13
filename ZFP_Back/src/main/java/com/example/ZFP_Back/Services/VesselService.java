@@ -33,7 +33,6 @@ public class VesselService {
     public List<Map<String,Object>> getAllVesselInProfile(){
         return vesselRepository.getAllVesselInProfile();
     }
-
     // post vessel
    public Vessel post(VesselRequest vesselRequest){
     User user = new User();
@@ -74,6 +73,9 @@ public class VesselService {
     return vesselRepository.save(vessel);
    }
 
-   
+   //get Count
+   public Long getCount(){
+    return vesselRepository.count();
+   }
 
 }

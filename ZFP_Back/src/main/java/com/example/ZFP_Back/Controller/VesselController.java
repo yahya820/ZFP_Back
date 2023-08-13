@@ -54,4 +54,8 @@ public class VesselController {
     public ResponseEntity <?> update (@PathVariable long id, @RequestBody VesselResponse vesselResponse){
         return ResponseEntity.ok(vesselService.update(id, vesselResponse));
     }
+    @GetMapping("/vessel/count")
+    public ResponseEntity<?> count(){
+        return ResponseEntity.ok(vesselService.getCount());
+    }
 }

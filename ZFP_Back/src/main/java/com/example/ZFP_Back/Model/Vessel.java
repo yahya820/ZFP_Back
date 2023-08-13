@@ -18,6 +18,7 @@ public class Vessel {
     private Long vesselId;
     private String name_vessel;
     private String type_vessel;
+    @Column(unique = true)
     private String no_vessel;
     private int no_people;
     private String ways;

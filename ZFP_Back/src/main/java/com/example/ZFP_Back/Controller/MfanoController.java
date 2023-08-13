@@ -1,6 +1,8 @@
 package com.example.ZFP_Back.Controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +22,12 @@ public class MfanoController {
 
     @PostMapping("mfano")
     public ResponseEntity<?> post(@RequestBody MfanoRequest mfanoRequest){
-        return ResponseEntity.ok(mfanoService.post(mfanoRequest));
+       try {
+        return mfanoService.post(mfanoRequest);
+       } catch (Exception e) {
+            return new ResponseEntity<>(new Error("Errotrr500 500"),HttpStatus.BAD_REQUEST);
+       }
+        // return ResponseEntity.ok(mfanoService.post(mfanoRequest));
     }
     
 }

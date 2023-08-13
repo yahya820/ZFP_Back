@@ -49,4 +49,8 @@ public class PaymentVesselController {
     public ResponseEntity<?> getPaymentByDate(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
         return ResponseEntity.ok(paymentVesselService.getPaymentByDate(startDate, endDate));
     }
+    @GetMapping("/payment/vessel/count")
+    public ResponseEntity<?>count(){
+        return ResponseEntity.ok(paymentVesselService.getCount());
+    }
 }

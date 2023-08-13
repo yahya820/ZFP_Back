@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.ZFP_Back.Exception.MesageResponse;
 import com.example.ZFP_Back.Model.Mfano;
-import com.example.ZFP_Back.Model.User;
 import com.example.ZFP_Back.Repository.MfanoRepository;
 import com.example.ZFP_Back.Request.MfanoRequest;
 
@@ -18,13 +18,15 @@ public class MfanoService {
     private ModelMapper modelMapper;
 
     //post
-    public ResponseEntity<?> post(MfanoRequest mfanoRequest){
-        Mfano mfano = modelMapper.map(mfanoRequest, Mfano.class);
-        if (mfanoRepository.findByName(mfanoRequest.getName())){
-          return ResponseEntity.badRequest().body(new Error("Name already registed"));
-        }
-        return ResponseEntity.ok(mfanoRepository.save(mfano));
-    }
+    public ResponseEntity<?> post(MfanoRequest mfanoRequest) {
+      if (mfanoRepository.existsByName(mfanoRequest.getName())){
+        return ResponseEntity.ok( new MesageResponse("Name is already registed"));
+      }
+  
+      Mfano mfano = modelMapper.map(mfanoRequest, Mfano.class);
+      return ResponseEntity.ok(mfanoRepository.save(mfano));
+  }
+  
 
 
 }

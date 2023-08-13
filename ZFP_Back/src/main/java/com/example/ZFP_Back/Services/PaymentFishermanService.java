@@ -83,4 +83,8 @@ public class PaymentFishermanService {
     }
 
 
+    //get Count
+    public Long getCount(){
+        return paymentFishermanRepository.count();
+    }
 }

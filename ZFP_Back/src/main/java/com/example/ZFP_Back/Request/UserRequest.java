@@ -1,9 +1,9 @@
-package com.example.ZFP_Back.Dto;
+package com.example.ZFP_Back.Request;
 
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class UserRequest {
     private Long userId;
     private String name;
     private byte[] image;

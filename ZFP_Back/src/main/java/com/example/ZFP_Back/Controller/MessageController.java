@@ -28,4 +28,8 @@ public class MessageController {
     public ResponseEntity<?>getMessage(@PathVariable Long userId){
         return ResponseEntity.ok(messageService.getAllByuserId(userId));
     }
+    @GetMapping("/message/count")
+    public ResponseEntity<?> count(){
+        return ResponseEntity.ok(messageService.getCount());
+    }
 }

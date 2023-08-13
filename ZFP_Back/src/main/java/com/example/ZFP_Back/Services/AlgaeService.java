@@ -53,4 +53,9 @@ public class AlgaeService {
         return algaeRepositoty.findById(id);
     }
 
+    //get Count
+    public Long getCount(){
+        return algaeRepositoty.count();
+    }
+
 }

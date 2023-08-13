@@ -72,5 +72,9 @@ public class FishermanController {
     public ResponseEntity <?> update(@PathVariable long id, @RequestBody FIshermanDTO fIshermanDTO){
         return ResponseEntity.ok(fishermanService.update(id, fIshermanDTO));
     }
+    @GetMapping("/fisherman/count")
+    public ResponseEntity<?> count(){
+        return ResponseEntity.ok(fishermanService.getCount());
+    }
 
 }

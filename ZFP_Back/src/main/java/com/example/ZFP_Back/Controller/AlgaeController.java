@@ -39,4 +39,8 @@ public class AlgaeController {
    public ResponseEntity<?> post (@RequestBody AlgaeRequest algaeRequest){
     return ResponseEntity.ok(algaeService.post(algaeRequest));
    }
+   @GetMapping("/algae/count")
+   public ResponseEntity<?> count(){
+    return ResponseEntity.ok(algaeService.getCount());
+   }
 }

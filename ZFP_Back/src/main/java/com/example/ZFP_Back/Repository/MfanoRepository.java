@@ -7,6 +7,5 @@ import com.example.ZFP_Back.Model.Mfano;
 @Repository
 public interface MfanoRepository extends JpaRepository<Mfano, Long> {
     
-Boolean findByName(String name);
-
+    Boolean existsByName(String name);
 }

@@ -71,5 +71,10 @@ public class PaymentVesselService {
         }
         return list;
     }
+
+    //get Count
+    public Long getCount(){
+        return paymentVesselRepository.count();
+    }
     
 }

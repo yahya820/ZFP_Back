@@ -1,13 +1,17 @@
 package com.example.ZFP_Back.Services;
 
-import com.example.ZFP_Back.Dto.UserDTO;
+import com.example.ZFP_Back.Exception.ErrorResponse;
+import com.example.ZFP_Back.Exception.MesageResponse;
 import com.example.ZFP_Back.Exception.ResourceNotFoundException;
 import com.example.ZFP_Back.Model.User;
 // import com.example.ZFP_Back.Repository.RoleRepository;
 import com.example.ZFP_Back.Repository.UserRepository;
+import com.example.ZFP_Back.Request.UserRequest;
+
 // import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -28,14 +32,25 @@ public class UserServices {
 
 
     //create a User and thier Role
-    public User addUSer(UserDTO userDTO){
-        User user = modelMapper.map(userDTO, User.class);
+    public ResponseEntity<?> addUSer(UserRequest userRequest){
+        if(userRepository.existsByEmail(userRequest.getEmail())){
+            return ResponseEntity.badRequest().body(new ErrorResponse("Fail", "Error: Anuani Inatumika"));
+        }
+        if(userRepository.existsByIdentity(userRequest.getIdentity())){
+                return ResponseEntity.badRequest().body(new ErrorResponse("Fail", "Error:  Namba ya kitambilisho ishasajiliwa"));
+            }
+        User user = modelMapper.map(userRequest, User.class);
         String name  = user.getName();
         String pass = user.getPass();
         int nameLength = name.length();
         String encryptedPassword = encryptPassword(pass,nameLength);
         user.setPass(encryptedPassword);
-        return userRepository.save(user);
+        return ResponseEntity.ok(userRepository.save(user));
+    }
+
+    //get Count
+    public Long getCount(){
+        return userRepository.count();
     }
 
     //update
@@ -76,31 +91,31 @@ public class UserServices {
          userRepository.deleteById(id);
      }
   //Update By id
-    public User editById(long id, UserDTO userDTO){
+    public User editById(long id, UserRequest userRequest){
         User user = userRepository.findById(id)
         .orElseThrow(()-> new ResourceNotFoundException("User Not Found",id));
-        modelMapper.map(userDTO, User.class);
-        user.setSex(userDTO.getSex());
-        user.setWork(userDTO.getWork());
-        user.setEmail(userDTO.getEmail());
-        user.setAddress(userDTO.getAddress());
-        user.setAge(userDTO.getAge());
-        user.setIdentity(userDTO.getIdentity());
+        modelMapper.map(userRequest, User.class);
+        user.setSex(userRequest.getSex());
+        user.setWork(userRequest.getWork());
+        user.setEmail(userRequest.getEmail());
+        user.setAddress(userRequest.getAddress());
+        user.setAge(userRequest.getAge());
+        user.setIdentity(userRequest.getIdentity());
         // user.setLeader(userDTO.getLeader());
         // user.setName(userDTO.getName());
-        user.setNationality(userDTO.getNationality());
-        user.setPhone(userDTO.getPhone());
+        user.setNationality(userRequest.getNationality());
+        user.setPhone(userRequest.getPhone());
         // user.setUsername(userDTO.getUsername()); 
         // user.setImage(userDTO.getImage());
       return userRepository.save(user);
     }
 
     //Update By leader Only
-    public User editleader(long id, UserDTO userDTO){
+    public User editleader(long id, UserRequest userRequest){
         User user = userRepository.findById(id)
         .orElseThrow(()-> new ResourceNotFoundException("User Not Found",id));
-        modelMapper.map(userDTO, User.class);
-        user.setLeader(userDTO.getLeader());
+        modelMapper.map(userRequest, User.class);
+        user.setLeader(userRequest.getLeader());
       return userRepository.save(user);
     }
 

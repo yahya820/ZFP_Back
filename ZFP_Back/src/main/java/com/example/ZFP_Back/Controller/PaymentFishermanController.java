@@ -63,4 +63,8 @@ public class PaymentFishermanController {
     public List<?> getVesselByDate(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
         return paymentFishermanService.getPaymentByDate(startDate,endDate);
     }
+    @GetMapping("/payment/fisherman/count")
+    public ResponseEntity<?> count(){
+        return ResponseEntity.ok(paymentFishermanService.getCount());
+    }
 }

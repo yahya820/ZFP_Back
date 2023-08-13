@@ -93,5 +93,10 @@ public class FishermanService {
         fisherman.setType(fIshermanDTO.getType());
         return fishermanRepository.save(fisherman);
     }
+
+    //get Count
+    public long getCount(){
+        return fishermanRepository.count();
+    }
 }
 
