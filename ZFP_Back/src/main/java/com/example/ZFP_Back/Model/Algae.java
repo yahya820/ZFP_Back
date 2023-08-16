@@ -15,11 +15,15 @@ public class Algae {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long algaeId;
     private int no_farm;
+    private String region;
+    private String district;
+    private String ward;
     private int no_men;
     private int no_women;
     private int hector;
     private int tones;
     private String type;
+    @JsonFormat(pattern = "d-M-yyyy")
     private LocalDate date;
 
     @ManyToOne

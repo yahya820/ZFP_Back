@@ -29,24 +29,26 @@ public class AlgaeService {
 
     //post to location
     public Algae post (AlgaeRequest algaeRequest){
-        Location location = new Location();
-        location.setLocationid(algaeRequest.getLocationid());
+        algaeRequest.setNo_farm(algaeRequest.getNo_men() + algaeRequest.getNo_women());
         Algae algae = modelMapper.map(algaeRequest,Algae.class);
-        algae.setLocation(location);
         return algaeRepositoty.save(algae);
     }
     
     // GetAll
-    public List getAll(){
-        List list = new ArrayList<>();
-        AlgaeResponse algaeResponse = null;
-        for(Map<String,Object> data : algaeRepositoty.getAll()){
-            algaeResponse = modelMapper.map(data, AlgaeResponse.class);
-            list.add(algaeResponse);
-        }
-        return list;
-    }
+    // public List getAll(){
+    //     List list = new ArrayList<>();
+    //     AlgaeResponse algaeResponse = null;
+    //     for(Map<String,Object> data : algaeRepositoty.getAll()){
+    //         algaeResponse = modelMapper.map(data, AlgaeResponse.class);
+    //         list.add(algaeResponse);
+    //     }
+    //     return list;
+    // }
 
+    //findAll
+    public List<Algae> findAll(){
+        return algaeRepositoty.findAll();
+    }
 
     // getById
     public Optional <Algae> getById(long id){

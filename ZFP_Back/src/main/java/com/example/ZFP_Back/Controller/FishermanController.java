@@ -24,12 +24,6 @@ public class FishermanController {
     private FishermanService fishermanService;
 
     @PostMapping("/fisherman")
-    // public ResponseEntity<?> post(@RequestBody Fisherman fisherman){
-    //     User user = userRepository.save(fisherman.getUser());
-    //     fisherman.setUser(user);
-    //     Fisherman fisherman2 = fishermanRepository.save(fisherman);
-    //     return ResponseEntity.ok(fisherman2);
-    // }
     public ResponseEntity<?> create(@RequestBody FishermanRequest fishermanRequest){
         return ResponseEntity.ok(fishermanService.create(fishermanRequest));
     }

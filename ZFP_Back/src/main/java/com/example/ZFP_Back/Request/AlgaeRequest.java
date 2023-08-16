@@ -13,6 +13,9 @@ public class AlgaeRequest {
     private int tones;
     private String type;
     private LocalDate date;
+    private String region;
+    private String district;
+    private String ward;
 
     private Long locationid;
    

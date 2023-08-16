@@ -16,6 +16,7 @@ import com.example.ZFP_Back.Response.FishermanResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.geo.Point;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -42,13 +43,11 @@ public class FishermanService {
     public Fisherman create(FishermanRequest fishermanRequest){
         User user = new User();
         user.setUserId(fishermanRequest.getUserId());
-        
         Fisherman fisherman = modelMapper.map(fishermanRequest, Fisherman.class);
-        // fisherman.setPaymentFishermans(fishermanRequest.getPaymentFishermans());
-    //   List  <PaymentFisherman> paymentFisherman = paymentFishermanRepository.save(fisherman);
         fisherman.setUser(user);
         return fishermanRepository.save(fisherman);
     }
+
 
     //GetAll Fisherman
     public List<Map<String,Object>> getAll(){

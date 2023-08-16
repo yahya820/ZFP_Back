@@ -32,6 +32,7 @@ public class Fisherman {
     private String meter;
     
     @OneToOne
+    @JoinColumn(unique = true)
     private User user;
 
     // private Long paymentFishermanId;

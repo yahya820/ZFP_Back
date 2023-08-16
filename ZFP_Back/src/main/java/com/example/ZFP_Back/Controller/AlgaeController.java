@@ -27,9 +27,13 @@ public class AlgaeController {
     // public ResponseEntity<?> post(AlgaeDTO algaeDTO){
     //     return ResponseEntity.ok(algaeService.post(algaeDTO));
     // }
-    @GetMapping("/algae")
-    public List getAll(){
-        return algaeService.getAll();
+    // @GetMapping("/algae")
+    // public List getAll(){
+    //     return algaeService.getAll();
+    // }
+    @GetMapping("algae/findAll")
+    public ResponseEntity<?> findAll(){
+        return ResponseEntity.ok(algaeService.findAll());
     }
    @GetMapping("/algae/{id}")
    public ResponseEntity <?> getById(@PathVariable long id){
