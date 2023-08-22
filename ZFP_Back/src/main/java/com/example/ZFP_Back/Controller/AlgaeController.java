@@ -47,4 +47,8 @@ public class AlgaeController {
    public ResponseEntity<?> count(){
     return ResponseEntity.ok(algaeService.getCount());
    }
+   @GetMapping("/algae/getAllByTime")
+   public ResponseEntity<?> getAllByTime(){
+    return ResponseEntity.ok(algaeService.getAllByTime());
+   }
 }

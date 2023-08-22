@@ -1,6 +1,8 @@
 package com.example.ZFP_Back.Model;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,6 +27,8 @@ public class Algae {
     private String type;
     @JsonFormat(pattern = "d-M-yyyy")
     private LocalDate date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private Timestamp time;
 
     @ManyToOne
     private Location location;

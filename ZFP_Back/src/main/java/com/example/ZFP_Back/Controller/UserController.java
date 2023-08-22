@@ -45,6 +45,10 @@ public class UserController {
     public ResponseEntity<?> getUserIdandFishermanId(@PathVariable Long id){
         return ResponseEntity.ok(userServices.getUserIdandFishermanId(id));
     }
+    @GetMapping("/users/user/{name}")
+    public ResponseEntity<?> getByname(@PathVariable String name){
+        return ResponseEntity.ok(userServices.getByname(name));
+    }
 
     @PutMapping("/users/{id}")
    public ResponseEntity<?> update (@PathVariable long id, @RequestBody UserRequest userRequest){

@@ -12,4 +12,7 @@ import com.example.ZFP_Back.Model.Algae;
 public interface AlgaeRepositoty extends JpaRepository<Algae,Long> {
     @Query (value = "select al.*, l.village from algae al JOIN location l ON l.locationid = al.location_locationid", nativeQuery = true)
     List<Map<String,Object>> getAll();
+
+    @Query(value = "select *from algae a ORDER BY a.time DESC", nativeQuery = true)
+    List<Algae> getAllByTime();
 }

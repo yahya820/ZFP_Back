@@ -25,9 +25,8 @@ public interface FishermanRepository extends JpaRepository<Fisherman, Long> {
 // @Query(value = "SELECT * FROM fisherman INNER JOIN user ON user.user_id = fisherman.user_id", nativeQuery = true)
 //  Optional<Fisherman> findallByFishermanId(long fishermanId);
 
-// @Query(value = "SELECT pa.payment_fisherman_id, pa.acc_name, pa.receipt_no, pa.date, u.user_id,u.email,u.leader,u.name, u.work, u.address,u.nationality, u.phone, u.sex, u.identity, f.ways, f.diko_usage, f.type, f.meter FROM Payment_fisherman pa JOIN fisherman f JOIN user u WHERE f.fisherman_id = ?1", nativeQuery = true)
+@Query(value = "SELECT pa.payment_fisherman_id, pa.acc_name, pa.receipt_no, pa.date, u.user_id,u.email,u.leader,u.name, u.work, u.address,u.nationality, u.phone, u.sex, u.identity, f.ways, f.diko_usage, f.type, f.meter FROM Payment_fisherman pa JOIN fisherman f JOIN user u WHERE f.fisherman_id = ?1", nativeQuery = true)
 // Optional<Fisherman> findallByFishermanId(Long userId);
-@Query(value = "SELECT fisherman.*, user.name,user.address,user.age,user.email,user.identity,user.nationality,user.phone,user.sex,user.work FROM `fisherman` fisherman JOIN user user ON user.user_id = fisherman.user_user_id WHERE user.user_id = ?1 ",nativeQuery = true)
 Optional<Map<String,Object>>  findallByFishermanId(Long fishermanId);
 
 // @Query(value = "SELECT user.name,fisherman.type,fisherman.ways FROM fisherman fisherman INNER JOIN user user on user.user_id = fisherman.user_id", nativeQuery = true)

@@ -119,13 +119,10 @@ public class UserServices {
       return userRepository.save(user);
     }
 
-    //update Byid on leader
-    // public User updateById(long id, UserDTO userDTO){
-    //     User user = userRepository.findById(id)
-    //     .orElseThrow( ()-> new ResourceNotFoundException("User id leader not Found", id));
-    //     user.setLeader(userDTO.getLeader());
-    //     return userRepository.save(user);
-    // }
+    //get bY name 
+    public List <User> getByname(String name){
+        return userRepository.findByName(name);
+    }
 
     
     //Login

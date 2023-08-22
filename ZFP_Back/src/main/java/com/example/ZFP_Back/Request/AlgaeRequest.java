@@ -1,5 +1,7 @@
 package com.example.ZFP_Back.Request;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDate;
 
 import lombok.Data;
@@ -16,8 +18,8 @@ public class AlgaeRequest {
     private String region;
     private String district;
     private String ward;
+    private Timestamp time;
 
-    private Long locationid;
    
 
 }

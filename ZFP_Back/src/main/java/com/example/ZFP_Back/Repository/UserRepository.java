@@ -33,5 +33,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findAll();
     @Query (value = "select * from user u JOIN fisherman f ON f.fisherman_id = u.user_id WHERE u.user_id = ?1", nativeQuery = true)
     Optional<Map<String,Object>>getUserIdandFishermanId(Long userId);
+
+    @Query(value = "select * from user WHERE name = ?1", nativeQuery = true)
+    List<User> findByName(String name);
 }
 
